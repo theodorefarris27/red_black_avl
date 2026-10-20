@@ -8,7 +8,10 @@
 
 #include <iomanip>
 #include <iostream>
+
+#include "avl.h"
 #include "../tree_node.h"
+#include "../tree_node/tree_node.h"
 using namespace std;
 
 //declarations
@@ -77,9 +80,32 @@ tree_node<T>* rotate_left(tree_node<T>* &root);
 template <typename T>
 tree_node<T>* rotate(tree_node<T>* & root); //decide which rotate is needed based on balance factor
 
+template <typename T>
+void flip_color(tree_node<T>* &root);
 
+template <typename T>
+int is_red(const tree_node<T>*& root);
 
 //implementations
+
+template<typename T>
+void red_black_avl<T>::flip_color(const tree_node<T> &root) {
+    if (root->_color != 1) {
+        if (root->_left->color == 1 && root->_right->color == 1) {
+            root->_color = 1;
+            root->_left->color = 0;
+            root->_right->color = 0;
+        }
+    }
+}
+
+template<typename T>
+int is_red(const tree_node<T> &root) {
+    if (root == nullptr) {
+        return 0;
+    }
+    return root->color == 1;
+}
 
 //done
 template <typename T>
@@ -110,6 +136,7 @@ bool tree_insert(tree_node<T>* &root, const T& insert_me) {
     if(abs(root->balance_factor()) == 2){
         rotate(root);
     }
+    flip_color(root);
     return success;
 }
 
@@ -268,6 +295,7 @@ void tree_remove_max(tree_node<T>* &root, T& max_value) {
             }
         }
     }
+    flip_color(root);
 }
 
 //left -> root -> right

@@ -4,6 +4,7 @@
 
 #ifndef INC_11_AVL_CLASS_THEODOREFARRIS27_TREE_NODE_H
 #define INC_11_AVL_CLASS_THEODOREFARRIS27_TREE_NODE_H
+
 using namespace std;
 
 template <typename T>
@@ -12,6 +13,7 @@ struct tree_node{
     tree_node<T>* _left;
     tree_node<T>* _right;
     int _height;
+    int _color;
     int balance_factor(){
         //balance factor = height of the left subtree
         //                        - the height of the right subtree
