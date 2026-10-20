@@ -1,0 +1,19 @@
+1. Why could an ordinary BST become inefficient depending on the order of the villager records?
+
+If the villagers are inserted in sorted order, an ordinary BST could become unbalanced and act like a linked list. This would make searching take O(n) time instead of O(log n).
+
+2. How does the red-black tree address this problem?
+
+A red-black tree uses rotations and color changes to keep itself balanced during insertion. This prevents the tree from becoming too tall and keeps searching and insertion at O(log n).
+
+3. What is the role of the `Name` field in your tree?
+
+The `Name` field is the key used to organize the tree. It determines where each villager is inserted and allows us to search for villagers by name.
+
+4. If the tree is organized by `Name`, can you use the BST search algorithm to efficiently search for all villagers with a particular `Species`? Explain.
+
+No, because the tree is organized by name, not species. To find all villagers of a certain species, we would need to check every node, which takes O(n) time.
+
+5. If the same records were stored in an ordinary BST and a red-black tree, would an in-order traversal produce the same ordering? Explain.
+
+Yes, because both trees follow the BST ordering rules. An in-order traversal visits the left subtree, then the root, then the right subtree, so both would display the villagers alphabetically by name.
